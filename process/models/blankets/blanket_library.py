@@ -25,6 +25,7 @@ from process.models.engineering.pumping import (
     CoolantType,
     calculate_required_mass_flow_rate,
     coolant_friction_pressure_drop,
+    coolant_pumping_power,
 )
 from process.models.fw import N_FW_PIPE_90_DEG_BENDS, N_FW_PIPE_180_DEG_BENDS
 from process.models.power import PumpingPowerModelTypes
@@ -2634,8 +2635,7 @@ class BlanketLibrary(Model):
 
             # Total mechanical pumping power (MW)
             self.data.primary_pumping.p_fw_blkt_coolant_pump_mw = (
-                self.coolant_pumping_power(
-                    output=output,
+                coolant_pumping_power(
                     i_liquid_breeder=1,
                     temp_coolant_pump_outlet=self.data.fwbs.temp_fw_coolant_in,
                     temp_coolant_pump_inlet=self.data.fwbs.temp_blkt_coolant_out,
@@ -2644,7 +2644,8 @@ class BlanketLibrary(Model):
                     mflow_coolant_total=self.data.blanket.mftotal,
                     i_coolant_type=self.data.fwbs.i_fw_coolant_type,
                     den_coolant=self.data.fwbs.den_fw_coolant,
-                    label="First Wall and Blanket",
+                    etaiso=self.data.fwbs.etaiso,
+                    etaiso_liq=self.data.fwbs.etaiso_liq
                 )
             )
 
@@ -2691,7 +2692,7 @@ class BlanketLibrary(Model):
             )
 
             # Mechanical pumping power for the first wall (MW)
-            self.data.heat_transport.p_fw_coolant_pump_mw = self.coolant_pumping_power(
+            self.data.heat_transport.p_fw_coolant_pump_mw = coolant_pumping_power(
                 i_liquid_breeder=1,
                 temp_coolant_pump_outlet=self.data.fwbs.temp_fw_coolant_in,
                 temp_coolant_pump_inlet=self.data.fwbs.temp_fw_coolant_out,
@@ -2705,7 +2706,7 @@ class BlanketLibrary(Model):
             )
 
             # Mechanical pumping power for the blanket (MW)
-            self.data.heat_transport.p_blkt_coolant_pump_mw = self.coolant_pumping_power(
+            self.data.heat_transport.p_blkt_coolant_pump_mw = coolant_pumping_power(
                 i_liquid_breeder=1,
                 temp_coolant_pump_outlet=self.data.fwbs.temp_blkt_coolant_in,
                 temp_coolant_pump_inlet=self.data.fwbs.temp_blkt_coolant_out,
@@ -2749,7 +2750,7 @@ class BlanketLibrary(Model):
             )
 
             # Mechanical pumping power for the blanket (MW)
-            self.data.heat_transport.p_blkt_breeder_pump_mw = self.coolant_pumping_power(
+            self.data.heat_transport.p_blkt_breeder_pump_mw = coolant_pumping_power(
                 i_liquid_breeder=2,
                 temp_coolant_pump_outlet=self.data.fwbs.inlet_temp_liq,
                 temp_coolant_pump_inlet=self.data.fwbs.outlet_temp_liq,
