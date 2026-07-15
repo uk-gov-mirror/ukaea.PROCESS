@@ -1199,7 +1199,7 @@ class BlanketLibrary(Model):
             )
 
             # Mass flow rate per coolant pipe
-            self.data.blanket.mfblktpo = (
+            self.data.blanket.mflow_blkt_outboard_coolant_channel = (
                 self.data.blanket.mflow_blkt_outboard_coolant
                 / self.data.blanket.n_blkt_outboard_channels
             )
@@ -1208,7 +1208,7 @@ class BlanketLibrary(Model):
             # Assume BZ structure has same channel width as FW
             self.data.blanket.vel_blkt_outboard_coolant = self.flow_velocity(
                 i_channel_shape=1,
-                mass_flow_rate=self.data.blanket.mfblktpo,
+                mass_flow_rate=self.data.blanket.mflow_blkt_outboard_coolant_channel,
                 flow_density=self.data.fwbs.den_blkt_coolant,
             )
             velblkto_liq = self.flow_velocity(
@@ -1241,7 +1241,7 @@ class BlanketLibrary(Model):
                 )
 
                 # Mass flow rate per coolant pipe
-                self.data.blanket.mfblktpi = (
+                self.data.blanket.mflow_blkt_inboard_coolant_channel = (
                     self.data.blanket.mflow_blkt_inboard_coolant
                     / self.data.blanket.n_blkt_inboard_channels
                 )
@@ -1253,7 +1253,7 @@ class BlanketLibrary(Model):
                 # Assume BZ structure has same channel width as FW
                 self.data.blanket.vel_blkt_inboard_coolant = self.flow_velocity(
                     i_channel_shape=1,
-                    mass_flow_rate=self.data.blanket.mfblktpi,
+                    mass_flow_rate=self.data.blanket.mflow_blkt_inboard_coolant_channel,
                     flow_density=self.data.fwbs.den_blkt_coolant,
                 )
                 velblkti_liq = self.flow_velocity(
@@ -1283,7 +1283,7 @@ class BlanketLibrary(Model):
             )
 
             # Mass flow rate per coolant pipe
-            self.data.blanket.mfblktpo = (
+            self.data.blanket.mflow_blkt_outboard_coolant_channel = (
                 self.data.blanket.mflow_blkt_outboard_coolant
                 / self.data.blanket.n_blkt_outboard_channels
             )
@@ -1292,7 +1292,7 @@ class BlanketLibrary(Model):
             # Assume BZ structure has same channel width as FW
             self.data.blanket.vel_blkt_outboard_coolant = self.flow_velocity(
                 i_channel_shape=1,
-                mass_flow_rate=self.data.blanket.mfblktpo,
+                mass_flow_rate=self.data.blanket.mflow_blkt_outboard_coolant_channel,
                 flow_density=self.data.fwbs.den_blkt_coolant,
             )
 
@@ -1335,7 +1335,7 @@ class BlanketLibrary(Model):
                 )
 
                 # Mass flow rate per coolant pipe
-                self.data.blanket.mfblktpi = (
+                self.data.blanket.mflow_blkt_inboard_coolant_channel = (
                     self.data.blanket.mflow_blkt_inboard_coolant
                     / self.data.blanket.n_blkt_inboard_channels
                 )
@@ -1344,7 +1344,7 @@ class BlanketLibrary(Model):
                 # Assume BZ structure has same channel width as FW
                 self.data.blanket.vel_blkt_inboard_coolant = self.flow_velocity(
                     i_channel_shape=1,
-                    mass_flow_rate=self.data.blanket.mfblktpi,
+                    mass_flow_rate=self.data.blanket.mflow_blkt_inboard_coolant_channel,
                     flow_density=self.data.fwbs.den_blkt_coolant,
                 )
 
@@ -1381,7 +1381,7 @@ class BlanketLibrary(Model):
             )
 
             # Mass flow rate per coolant pipe
-            self.data.blanket.mfblktpo = (
+            self.data.blanket.mflow_blkt_outboard_coolant_channel = (
                 self.data.blanket.mflow_blkt_outboard_coolant
                 / self.data.blanket.n_blkt_outboard_channels
             )
@@ -1390,7 +1390,7 @@ class BlanketLibrary(Model):
             # Assume BZ structure has same channel width as FW
             self.data.blanket.vel_blkt_outboard_coolant = self.flow_velocity(
                 i_channel_shape=1,
-                mass_flow_rate=self.data.blanket.mfblktpo,
+                mass_flow_rate=self.data.blanket.mflow_blkt_outboard_coolant_channel,
                 flow_density=self.data.fwbs.den_blkt_coolant,
             )
 
@@ -1412,7 +1412,7 @@ class BlanketLibrary(Model):
                 )
 
                 # Mass flow rate per coolant pipe
-                self.data.blanket.mfblktpi = (
+                self.data.blanket.mflow_blkt_inboard_coolant_channel = (
                     self.data.blanket.mflow_blkt_inboard_coolant
                     / self.data.blanket.n_blkt_inboard_channels
                 )
@@ -1421,7 +1421,7 @@ class BlanketLibrary(Model):
                 # Assume BZ structure has same channel width as FW
                 self.data.blanket.vel_blkt_inboard_coolant = self.flow_velocity(
                     i_channel_shape=1,
-                    mass_flow_rate=self.data.blanket.mfblktpi,
+                    mass_flow_rate=self.data.blanket.mflow_blkt_inboard_coolant_channel,
                     flow_density=self.data.fwbs.den_blkt_coolant,
                 )
 
