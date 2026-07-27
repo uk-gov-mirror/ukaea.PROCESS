@@ -1200,8 +1200,6 @@ class Scan:
                 self.data.physics.rad_fraction_sol = swp[iscn - 1]
             case 53:
                 self.data.numerics.boundu[156] = swp[iscn - 1]
-            case 54:
-                self.data.tfcoil.b_crit_upper_nbti = swp[iscn - 1]
             case 55:
                 self.data.build.dr_shld_inboard = swp[iscn - 1]
             case 56:

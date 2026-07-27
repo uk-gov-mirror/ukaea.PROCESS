@@ -131,7 +131,7 @@ def plot_scan(
         51: "f_p_div_lower",
         52: "rad_fraction_sol",
         53: "Obsolete",  # OBSOLETE
-        54: "b_crit_upper_nbti",
+        54: "Obsolete",  # OBSOLETE
         55: "dr_shld_inboard",
         56: "p_cryo_plant_electric_max_mw",
         # Genuinely b_plasma_toroidal_on_axis lower bound
