@@ -395,8 +395,8 @@ class Scan:
         process_output.ovarre(
             constants.NOUT,
             "Number of iteration variables",
-            "(nvar)",
-            self.data.numerics.nvar,
+            "(n_iteration_variables)",
+            self.data.numerics.n_iteration_variables,
         )
         process_output.ovarre(
             constants.NOUT,
@@ -495,7 +495,7 @@ class Scan:
 
         # Output optimisation parameters
         solution_vector_table = []
-        for i in range(self.data.numerics.nvar):
+        for i in range(self.data.numerics.n_iteration_variables):
             self.data.numerics.xcs[i] = (
                 self.data.numerics.xcm[i] * self.data.numerics.scafc[i]
             )

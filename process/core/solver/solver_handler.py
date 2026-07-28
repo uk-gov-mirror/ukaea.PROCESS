@@ -39,7 +39,7 @@ class SolverHandler:
         # Initialise iteration variables and bounds in Python: relies on Fortran
         # iteration variables being defined above
         # Trim maximum size arrays down to actually used size
-        n = self.data.numerics.nvar
+        n = self.data.numerics.n_iteration_variables
         x = self.data.numerics.xcm[:n]
         bndl = self.data.numerics.itv_scaled_lower_bounds[:n]
         bndu = self.data.numerics.itv_scaled_upper_bounds[:n]
