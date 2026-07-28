@@ -63,7 +63,9 @@ def output_evaluation(data):
     # Print the residuals of the constraint equations
 
     residual_error, value, residual, symbols, units = constraints.constraint_eqns(
-        data.numerics.n_equality_constraints + data.numerics.nineqns, -1, data
+        data.numerics.n_equality_constraints + data.numerics.n_inequality_constraints,
+        -1,
+        data,
     )
 
     labels = [
@@ -71,7 +73,8 @@ def output_evaluation(data):
         for j in [
             i - 1
             for i in data.numerics.icc[
-                : data.numerics.n_equality_constraints + data.numerics.nineqns
+                : data.numerics.n_equality_constraints
+                + data.numerics.n_inequality_constraints
             ]
         ]
     ]
@@ -97,7 +100,7 @@ def output_evaluation(data):
             residual_error[i],
         )
 
-    for i in range(data.numerics.nineqns):
+    for i in range(data.numerics.n_inequality_constraints):
         constraint_id = data.numerics.icc[data.numerics.n_equality_constraints + i]
         po.ovarre(
             constants.MFILE,

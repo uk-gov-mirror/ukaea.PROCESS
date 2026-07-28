@@ -401,8 +401,9 @@ class Scan:
         process_output.ovarre(
             constants.NOUT,
             "Number of constraints (total)",
-            "(n_equality_constraints+nineqns)",
-            self.data.numerics.n_equality_constraints + self.data.numerics.nineqns,
+            "(n_equality_constraints+n_inequality_constraints)",
+            self.data.numerics.n_equality_constraints
+            + self.data.numerics.n_inequality_constraints,
         )
         process_output.ovarre(
             constants.NOUT,
@@ -609,7 +610,8 @@ class Scan:
         )
 
         con1, con2, err, _, lab = constraints.constraint_eqns(
-            self.data.numerics.n_equality_constraints + self.data.numerics.nineqns,
+            self.data.numerics.n_equality_constraints
+            + self.data.numerics.n_inequality_constraints,
             -1,
             self.data,
         )
@@ -670,7 +672,7 @@ class Scan:
         )
 
         # Write inequality constraints
-        if self.data.numerics.nineqns > 0:
+        if self.data.numerics.n_inequality_constraints > 0:
             inequality_constraint_table = []
             # Inequalities not necessarily satisfied when evaluating
             process_output.osubhd(
@@ -687,7 +689,8 @@ class Scan:
 
             for i in range(
                 self.data.numerics.n_equality_constraints,
-                self.data.numerics.n_equality_constraints + self.data.numerics.nineqns,
+                self.data.numerics.n_equality_constraints
+                + self.data.numerics.n_inequality_constraints,
             ):
                 name = self.data.numerics.lablcc[self.data.numerics.icc[i] - 1]
                 constraint = constraints.ConstraintManager.evaluate_constraint(
