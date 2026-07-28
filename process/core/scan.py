@@ -401,12 +401,12 @@ class Scan:
         process_output.ovarre(
             constants.NOUT,
             "Optimisation switch",
-            "(ioptimz)",
-            self.data.numerics.ioptimz,
+            "(i_process_run_mode)",
+            self.data.numerics.i_process_run_mode,
         )
         process_output.ocmmnt(
             constants.NOUT,
-            f"     {PROCESSRunMode(self.data.numerics.ioptimz).description}",
+            f"     {PROCESSRunMode(self.data.numerics.i_process_run_mode).description}",
         )
         # Objective function output: none for fsolve
         if self.solver != "fsolve":
