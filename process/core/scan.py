@@ -413,11 +413,13 @@ class Scan:
             process_output.ovarre(
                 constants.NOUT,
                 "Figure of merit switch",
-                "(minmax)",
-                self.data.numerics.minmax,
+                "(i_figure_merit)",
+                self.data.numerics.i_figure_merit,
             )
 
-            objf_name = f'"{FiguresOfMerit(abs(self.data.numerics.minmax)).description}"'
+            objf_name = (
+                f'"{FiguresOfMerit(abs(self.data.numerics.i_figure_merit)).description}"'
+            )
 
             self.data.numerics.objf_name = objf_name
 
@@ -474,7 +476,7 @@ class Scan:
             else:
                 string1 = "PROCESS has failed to optimise"
 
-            string2 = "minimise" if self.data.numerics.minmax > 0 else "maximise"
+            string2 = "minimise" if self.data.numerics.i_figure_merit > 0 else "maximise"
 
             process_output.write(
                 constants.NOUT,
