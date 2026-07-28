@@ -473,6 +473,10 @@ OBS_VARS = {
     "i_cs_stress": None,
     "f_nd_alpha_electron": "f_nd_alpha_thermal_electron",
     "cost_model": "i_cost_model",
+    "ioptimz": "i_process_run_mode",
+    "minmax": "i_figure_merit",
+    "neqns": "n_equality_constraints",
+    "nineqns": "n_inequality_constraints",
 }
 
 OBS_VARS_HELP = {
