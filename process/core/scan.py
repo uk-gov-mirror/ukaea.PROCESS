@@ -308,7 +308,13 @@ class Scan:
 
         """
         self.data.numerics.sqsumsq = (
-            sum(r**2 for r in self.data.numerics.rcm[: self.data.numerics.neqns]) ** 0.5
+            sum(
+                r**2
+                for r in self.data.numerics.rcm[
+                    : self.data.numerics.n_equality_constraints
+                ]
+            )
+            ** 0.5
         )
 
         process_output.oheadr(constants.NOUT, "Numerics")
@@ -395,8 +401,8 @@ class Scan:
         process_output.ovarre(
             constants.NOUT,
             "Number of constraints (total)",
-            "(neqns+nineqns)",
-            self.data.numerics.neqns + self.data.numerics.nineqns,
+            "(n_equality_constraints+nineqns)",
+            self.data.numerics.n_equality_constraints + self.data.numerics.nineqns,
         )
         process_output.ovarre(
             constants.NOUT,
@@ -603,12 +609,14 @@ class Scan:
         )
 
         con1, con2, err, _, lab = constraints.constraint_eqns(
-            self.data.numerics.neqns + self.data.numerics.nineqns, -1, self.data
+            self.data.numerics.n_equality_constraints + self.data.numerics.nineqns,
+            -1,
+            self.data,
         )
 
         # Write equality constraints to mfile
         equality_constraint_table = []
-        for i in range(self.data.numerics.neqns):
+        for i in range(self.data.numerics.n_equality_constraints):
             name = self.data.numerics.lablcc[self.data.numerics.icc[i] - 1]
 
             equality_constraint_table.append([
@@ -678,8 +686,8 @@ class Scan:
                 )
 
             for i in range(
-                self.data.numerics.neqns,
-                self.data.numerics.neqns + self.data.numerics.nineqns,
+                self.data.numerics.n_equality_constraints,
+                self.data.numerics.n_equality_constraints + self.data.numerics.nineqns,
             ):
                 name = self.data.numerics.lablcc[self.data.numerics.icc[i] - 1]
                 constraint = constraints.ConstraintManager.evaluate_constraint(

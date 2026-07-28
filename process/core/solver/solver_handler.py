@@ -45,8 +45,8 @@ class SolverHandler:
         bndu = self.data.numerics.itv_scaled_upper_bounds[:n]
 
         # Define total number of constraints and equality constraints
-        m = self.data.numerics.neqns + self.data.numerics.nineqns
-        meq = self.data.numerics.neqns
+        m = self.data.numerics.n_equality_constraints + self.data.numerics.nineqns
+        meq = self.data.numerics.n_equality_constraints
 
         # Evaluators() calculates the objective and constraint functions and
         # their gradients for a given vector x
