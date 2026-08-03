@@ -3,6 +3,7 @@
 from process.core.log import logging_model_handler
 from process.data_structure.blanket_variables import BlktModelTypes
 from process.data_structure.build_variables import InboardBlanketConfiguration
+from process.models.power import PumpingPowerModelTypes
 from process.models.tfcoil.base import TFConductorModel
 from process.models.tfcoil.superconducting import (
     SuperconductingTFTurnType,
@@ -135,10 +136,14 @@ def write(models, data, _outfile):
         # DCLL model
         models.dcll.output()
 
-    if data.build.i_blkt_inboard == InboardBlanketConfiguration.INBOARD_BLANKET_PRESENT:
-        models.blanket_library.output_inboard_blkt_pumping_variables()
+    if data.fwbs.i_p_coolant_pumping == PumpingPowerModelTypes.CALCULATE_PRESSURE_DROP:
+        if (
+            data.build.i_blkt_inboard
+            == InboardBlanketConfiguration.INBOARD_BLANKET_PRESENT
+        ):
+            models.blanket_library.output_inboard_blkt_pumping_variables()
 
-    models.blanket_library.output_outboard_blkt_pumping_variables()
+        models.blanket_library.output_outboard_blkt_pumping_variables()
 
     # FISPACT and LOCA model (not used)- removed
 
