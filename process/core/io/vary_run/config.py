@@ -13,6 +13,7 @@ from shutil import SameFileError, copy
 import click
 from numpy.random import default_rng
 
+from process.core.exceptions import ProcessError
 from process.core.io.in_dat import InDat
 from process.core.io.mfile import MFile
 from process.core.io.vary_run.tools import (
@@ -61,6 +62,8 @@ iteration variables should get varied"""
         ------
         FileNotFoundError
             If config file is not found
+        ProcessError
+            If no original IN.DAT specified in config file
         """
         if isinstance(filename, str):
             filename = Path(filename)
@@ -85,7 +88,10 @@ iteration variables should get varied"""
             if or_in_dat is None
             else or_in_dat
         )
-        or_in_dat = Path("ref_IN.DAT") if or_in_dat is None else Path(or_in_dat)
+        if or_in_dat is None:
+            raise ProcessError("No IN.DAT specified in config file, please specify.")
+        or_in_dat = Path(or_in_dat)
+
         if not or_in_dat.is_file():
             or_in_dat = wdir / or_in_dat
 
